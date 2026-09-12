@@ -1,0 +1,42 @@
+# Smithery configuration for nexus-mcp-server
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      X402_WALLET:
+        type: string
+        description: "Wallet address for x402 payment (USDC on Arbitrum)"
+        default: ""
+      X402_BASE_URL:
+        type: string
+        description: "Base URL of the x402 M2M API server"
+        default: "http://169.58.38.67:8091"
+    required: ["X402_WALLET"]
+  command: python
+  args:
+    - nexus_mcp_server.py
+  env:
+    X402_WALLET: ${config.X402_WALLET}
+    X402_BASE_URL: ${config.X402_BASE_URL}
+metadata:
+  name: nexus-intelligence
+  description: "93 crypto-paid M2M services for AI agents. Pay-per-call in USDC via x402 protocol."
+  version: "1.0.0"
+  author: "nexus-intelligence"
+  license: "MIT"
+  homepage: "https://github.com/ROGT7/nexus-mcp-server"
+  categories:
+    - data
+    - finance
+    - security
+    - developer-tools
+  keywords:
+    - m2m
+    - x402
+    - crypto
+    - api
+    - scraping
+    - trading
+    - osint
+    - mcp
