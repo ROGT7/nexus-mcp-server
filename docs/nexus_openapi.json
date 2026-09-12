@@ -1,0 +1,28 @@
+﻿{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Nexus Intelligence M2M API",
+    "description": "93 micro-services M2M with x402 payment protocol. Pay-per-call in USDC. Crypto-native API for AI agents.",
+    "version": "4.0.0",
+    "contact": {"name": "Nexus Intelligence", "url": "https://github.com/nexus-intelligence"},
+    "license": {"name": "MIT", "url": "https://opensource.org/licenses/MIT"}
+  },
+  "servers": [{"url": "http://169.58.38.67:8091", "description": "Production (x402 protocol)"}],
+  "components": {
+    "securitySchemes": {
+      "x402": {"type": "apiKey", "in": "header", "name": "X402-Wallet", "description": "Wallet address for x402 payment"}
+    }
+  },
+  "security": [{"x402": []}],
+  "paths": {
+    "/health": {"get": {"summary": "Health check", "responses": {"200": {"description": "OK"}}}},
+    "/queue/status": {"get": {"summary": "Queue status", "responses": {"200": {"description": "OK"}}}},
+    "/api/rag-markdown": {"get": {"summary": "API Parsing RAG (Markdown)", "description": "Web page to clean Markdown for LLM. Price: 0.02 USDC", "parameters": [{"name": "url", "in": "query", "schema": {"type": "string"}}], "responses": {"200": {"description": "Markdown content"}}}},
+    "/api/sentiment": {"get": {"summary": "Crypto Sentiment Scraper", "description": "Real-time ETH/BTC sentiment JSON feed. Price: 0.05 USDC", "responses": {"200": {"description": "Sentiment data"}}}},
+    "/api/stealth-fetch": {"get": {"summary": "Anti-Bot Bypass API", "description": "Stealth Playwright to clean DOM. Price: 0.10 USDC", "parameters": [{"name": "url", "in": "query", "schema": {"type": "string"}}], "responses": {"200": {"description": "DOM content"}}}}
+  },
+  "x-extensions": {
+    "mcp-server": {"command": "python", "args": ["nexus_mcp_server.py"], "description": "MCP wrapper for 93 Nexus M2M services"},
+    "smithery": {"install": "npx @smithery/cli install nexus-intelligence", "category": "data", "tags": ["m2m", "x402", "crypto", "api", "scraping", "trading", "osint"]}
+  }
+}
