@@ -1,0 +1,1 @@
+﻿{"mcpServers":{"nexus-intelligence":{"command":"python","args":["nexus_mcp_server.py"],"env":{"X402_BASE_URL":"http://169.58.38.67:8091","X402_WALLET":"0xYourWalletAddress"}}}}
